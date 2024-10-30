@@ -195,7 +195,15 @@ TODO
 
 ### normalization_unit
 
-TODO
+| Value           | Description                                                                                                                                                                                                            |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CFM50           | A measure of a building's airtightness (cubic feet per minute to create a pressure difference of 50 pascals). Used in weatherization incentives.                                                                       |
+| EquipmentUnit   | A single unit of equipment, especially for types of equipment that can involve multiple similar units as part of a single installation (e.g. indoor units of a mini-split heat pump). Usually seen in HVAC incentives. |
+| Kilowatt        | A kilowatt of power output, such as from photovoltaic solar panels.                                                                                                                                                    |
+| KilowattHour    | A kilowatt-hour of energy, usually associated with battery storage capacity.                                                                                                                                           |
+| SquareFoot      | A square foot, usually of insulation.                                                                                                                                                                                  |
+| TenThousandBtuH | 10,000 BTU per hour, a measure of heating or cooling capacity. Not to be confused with a ton (see below).                                                                                                              |
+| Ton             | A measure of heating or cooling capacity, equivalent to 12,000 BTU per hour.                                                                                                                                           |
 
 ### property_type
 
@@ -207,7 +215,12 @@ TODO
 
 ### status
 
-TODO
+| Value         | Description                                                                                                                                                                                                                                            |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Active        | The incentive can be claimed now.                                                                                                                                                                                                                      |
+| InDevelopment | The incentive has never been claimable, but is expected to become claimable in future.                                                                                                                                                                 |
+| OnHold        | The incentive is not currently claimable, but it was previously, and is expected to become so again in future.                                                                                                                                         |
+| Retired       | The incentive was previously claimable, but it currently is not, and is _not_ expected to become so in future. **Note**: in general, incentives in this situation MAY simply be removed from datasets instead of being included and listed as Retired. |
 
 ### technology
 
