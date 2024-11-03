@@ -224,7 +224,79 @@ TODO
 
 ### technology
 
-TODO
+There are a very large number of possible technologies an incentive can be for. We have made a best effort attempt to organize the most commonly used technologies into a concise list of technology enums. These can be organized into the groups below, although the grouping is not a feature of the dataset.
+
+**Insulation**
+| Value | Description |
+|--|--|
+| Attic Insulation |  |
+| Floor Insulation |  |
+| Other Insulation |  |
+| Basement Insulation |  |
+| Wall Insulation |  |
+| Crawlspace Insulation |  |
+| Duct Insulation |  |
+
+**Cooking**
+| Value | Description |
+|--|--|
+| Electric Cooking Appliance |  |
+| Induction Cooking Appliance |  |
+
+**Dryers**
+| Value | Description |
+|--|--|
+| Electric Resistance Laundry Dryer |  |
+| Heat Pump Laundry Dryer |  |
+
+**Water Heaters**
+| Value | Description |
+|--|--|
+| Electric Resistance Water Heater |  |
+| Heat Pump Water Heater |  |
+| Solar Water Heater |  |
+
+**Vehicles**
+| Value | Description |
+|--|--|
+| New Battery Electric Vehicle |  |
+| New Plug-In Hybrid Electric Vehicle |  |
+| Used Battery Electric Vehicle |  |
+| Used Plug-In Hybrid Electric Vehicle |  |
+| Electric Bikes |  |
+
+**HVAC**
+| Value | Description |
+|--|--|
+| Ground-Source Geothermal Heat Pump |  |
+| Ducted Air Source Heat Pump (ASHP) |  |
+| Ductless Air Source Heat Pump (ASHP) |  |
+
+**Miscelaneous**
+| Value | Description |
+|--|--|
+| Duct Sealing |  |
+| General Air Sealing |  |
+| Windows |  |
+| Duct Replacement |  |
+| Energy Efficiency Improvements |  |
+| Door Replacement |  |
+| Electrical Panel |  |
+| Smart Electrical Panel |  |
+| Critical Load Panels |  |
+| Smart Thermostat |  |
+| Electric Thermal Storage Slab (ETS) |  |
+| Electrical Wiring |  |
+| Home Energy Audit |  |
+| Electric Back-up Power Units |  |
+| Battery Energy Storage |  |
+| Electric Outdoor Equipment |  |
+| Electric Pool Heater |  |
+| Electric Vehicle Charging Station |  |
+| Evaporative Cooler |  |
+| Other |  |
+| Solar PV Panels |  |
+| Whole House Fan |  |
 
 ## Descriptive Text Guidelines
 
