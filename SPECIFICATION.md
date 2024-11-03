@@ -211,7 +211,21 @@ TODO
 
 ### range_reason
 
-TODO
+| Value | Description |
+|--|--|
+| Empty |  |
+| Income | Applicant income impacts the amount of the incentive |
+| InstallerQualifications | Installer qualifications impact the amount of the incentive |
+| PurchaseLocation | Specific vendor impacts the amount of the incentive |
+| InstallationLocation | Location the technology is installed impacts the amount of the incentive|
+| Membership | Applicant's membership or association impacts the amount of the incentive |
+| NotApplicable |  |
+| Other |  |
+| ReplacementType | The type of replacement impacts the amount of the incentive |
+| Unknown |  |
+| UpgradeMeasureCost | The cost of the technoogy impacts the amount of the incentive |
+| UpgradeMeasureSpecifications | The specifications of the technoogy impacts the amount of the incentive |
+| Utility | The applicant's utility provider impacts the amount of the incentive |
 
 ### status
 
