@@ -207,7 +207,10 @@ TODO
 
 ### property_type
 
-TODO
+| Value | Description |
+|--|--|
+| SingleFamily | 1 to 4 family houses |
+| Multifamily | 5+ family houses |
 
 ### range_reason
 
