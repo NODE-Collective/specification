@@ -228,4 +228,36 @@ TODO
 
 ## Descriptive Text Guidelines
 
-TODO
+When writing text for the `description` fields of programs and incentives, these guidelines apply:
+
+- The text MUST be in English.
+
+- The text MUST be suitable for display to an end user, with correct spelling and punctuation according to US English conventions.
+
+- The text SHOULD be kept as terse as possible. To that end, the text MAY be in sentence fragments, such as "Must be enrolled in utility demand-response program."
+
+- It is RECOMMENDED that program descriptions not attempt to summarize the individual incentives within the program, and instead describe the common features of the program's incentive. Example: "Rebates for heating and cooling upgrades in single-family homes."
+
+- Program descriptions SHOULD NOT include information about the authority offering the program.
+
+- It is RECOMMENDED that incentive descriptions include anything important about the incentive that is not encoded in other fields of the incentive, and that they _not_ simply restate information that is encoded in other fields.
+
+  For example, "$100 rebate for a water heater" conveys no information beyond what already exists in the other fields, and is not recommended. "Must be replacing electric resistance heating" is not encoded in other fields, and is good information to include in the description.
+
+- Incentive descriptions SHOULD NOT include information about the program they are part of, or the authority offering them.
+
+- Monetary amounts MUST be formatted with a comma (U+002C) as the thousands separator, as in `$12,345`.
+
+- The text MUST NOT use mathematical symbols like `<` or `≤`. Such inequality relationships SHOULD be expressed in words, as follows:
+
+  - `<`: under
+  - `≤`: up to
+  - `>`: over
+  - `≥`: at least
+
+- Units of measurement SHOULD be abbreviated, as follows:
+
+  - `kWh` for kilowatt-hours
+  - `kW` for kilowatts
+  - `sqft` for square feet
+  - `Btu` for British Thermal Units, and `Btu/h` for BTU per hour. (Note that tons of cooling/heating SHOULD NOT be converted into BTU per hour.)
