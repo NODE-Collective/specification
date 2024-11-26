@@ -236,7 +236,7 @@ When writing text for the `description` fields of programs and incentives, these
 
 - The text SHOULD be kept as terse as possible. To that end, the text MAY be in sentence fragments, such as "Must be enrolled in utility demand-response program."
 
-- It is RECOMMENDED that program descriptions not attempt to summarize the individual incentives within the program, and instead describe the common features of the program's incentive. Example: "Rebates for heating and cooling upgrades in single-family homes."
+- It is RECOMMENDED that program descriptions not attempt to summarize the individual incentives within the program, and instead describe the common features of the program's incentives. Example: "Rebates for heating and cooling upgrades in single-family homes."
 
 - Program descriptions SHOULD NOT include information about the authority offering the program.
 
@@ -261,3 +261,7 @@ When writing text for the `description` fields of programs and incentives, these
   - `kW` for kilowatts
   - `sqft` for square feet
   - `Btu` for British Thermal Units, and `Btu/h` for BTU per hour. (Note that tons of cooling/heating SHOULD NOT be converted into BTU per hour.)
+
+- It is RECOMMENDED that the text be targeted at a non-specialist audience, and avoid excessive jargon and abbreviations.
+
+  Some abbreviations SHOULD be used, including for units of measurement as described above, and for industry-standard metrics, such as SEER, HSPF, UEF, and COP.
