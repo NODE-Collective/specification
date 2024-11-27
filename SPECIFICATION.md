@@ -86,9 +86,8 @@ Every field in every file has an associated data type: a constraint on what valu
 
 ### amounts.csv
 
-There MAY be multiple records in this file that refer to the same incentive in `incentives`. Examples of multiple amount rows:
-- situations where an incentive is for both a percent and an amount, such as 50% of project cost up to $4,000
-- incentives where there is a measure size plus a maximum, such as $1.50/sq ft for insulation, with a maximum value of $2,000
+There MAY be multiple records in this file that refer to the same incentive in `incentives`. Example of multiple amount rows:
+- situations where there is a base incentive plus a measure, such as $500 plus $1.50 per square foot for insulation
 
 | Field                | Type                      | Presence     | Description                                                                                                                                                                                                                                                                                       |
 | -------------------- | ------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
