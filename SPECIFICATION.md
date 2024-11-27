@@ -30,9 +30,9 @@ Most incentives condition eligibility on location in some way — typically the 
 
 ### Program
 
-Several incentives may fall under the umbrella of a single "program". TODO
+The distinction between an incentive and a program is often unclear. There are many incentives that are not part of a distinct program. When there is no single name from a program, default to using the 'authority' plus a description of the product category, such as 'Georgia Power Home Appliance Rebates'. Further clarification can be provided by asking in our discussion forum.
 
-The distinction between an incentive and a program is often unclear. There are many incentives that are not part of a distinct program. TODO
+Several incentives may fall under the umbrella of a single "program". Some authorities have a broad grouping of incentives for home efficiency, and include insulation, air sealing, and other weatherization improvements as part of the same program. However, each of those measures may have different incentive amounts, with different amount structures.
 
 Take, for example, the federal [Energy Efficient Home Improvement Credit](https://www.irs.gov/credits-deductions/energy-efficient-home-improvement-credit) (25C). It is presented as a single tax credit, but it applies to several different home efficiency measures, with different amounts of money available for each. Each of those amounts is an "incentive", in our terminology, and the 25C credit as a whole is a "program".
 
