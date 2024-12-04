@@ -7,11 +7,11 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Describe the issue**
+A clear and concise description of what the issue is.
 
 **To Reproduce**
-Steps to reproduce/view the bug:
+Steps to reproduce/view the issue:
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
@@ -20,8 +20,5 @@ Steps to reproduce/view the bug:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
 **Additional context**
-Add any other context about the problem here. Links to programs or incentives are helpful.
+Add any other context about the problem here, such as values not present or other issues. Links to programs or incentives are helpful.
