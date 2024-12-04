@@ -156,7 +156,13 @@ TODO
 
 ### applicant
 
-TODO
+Primary applicant who can apply for the incentive. There may be an option in the incentive for multiple applicants to be the primary applicant. 
+
+| Value            | Description                                                                   |
+| -----------------| ------------------------------------------------------------------------------|
+| Contractor       | A licensed contractor.                                                        |
+| Building Owner   | The legal owner of the building where the incentive-related work will happen. |
+| Tenant           | An individual renting a property.                                             |
 
 ### authority_level
 
