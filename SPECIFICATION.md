@@ -226,7 +226,18 @@ NODE datasets do not include information on the physical land areas that the var
 
 ### range_reason
 
-TODO
+| Value                   | Description                                                                                                                                                                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Income                  | Amount depends on whether the applicant's income is above or below some threshold.                                                                                                                                                |
+| InstallationLocation    | Amount depends on the location where the measure is installed. This refers to location on a geographic level, not location within a building or property.                                                                         |
+| InstallerQualifications | Amount depends on some property of the installer of the measure, such as licensing, membership in some network or association, etc.                                                                                               |
+| MeasureSpecifications   | Amount depends on some metric or specification of the measure. Example: a heat pump incentive that is greater if the heat pump's SEER and HSPF ratings exceed some thresholds. Note that cost is _not_ included in this category. |
+| Membership              | Amount depends on whether the applicant is a member of some association or program.                                                                                                                                               |
+| Other                   | Amount depends on some factor not listed here.                                                                                                                                                                                    |
+| PurchaseLocation        | Amount depends on where a measure was purchased. Example: an EV incentive that requires the vehicle to be purchased within a specific city.                                                                                       |
+| ReplacementType         | Amount depends on what the measure is replacing. Example: a heat pump incentive that is greater if the heat pump is replacing gas-based heating.                                                                                  |
+| Utility                 | Amount depends on the identity of the applicant's utility provider.                                                                                                                                                               |
+| Vendor                  | Amount depends on whether the measure is bought from a specific vendor or distributor, or set of same. Example: an EV incentive that requires the vehicle to be purchased from a specific network of dealerships.                 |
 
 ### status
 
