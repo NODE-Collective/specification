@@ -156,7 +156,7 @@ TODO
 
 ### applicant
 
-Primary applicant who can apply for the incentive. There may be an option in the incentive for multiple applicants to be the primary applicant. 
+Primary applicant who can apply for the incentive. There MAY be an option in the incentive for multiple applicants to be the primary applicant. 
 
 | Value            | Description                                                                   |
 | -----------------| ------------------------------------------------------------------------------|
