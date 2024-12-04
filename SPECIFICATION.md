@@ -152,11 +152,11 @@ There MAY be multiple records in this file that refer to the same incentive in `
 
 ### amount_type
 
-| Value | Description |
-|--|--|
-| FlatAmount | A static amount denominated in dollars. Example: $250 |
-| Normalized | A relative amount denominated as an amount per unit. Example: $1000 per 1 kilowatt-hour |
-| MeasureCoverage | A relative amount denominated as a percentage of the full cost of the measure. Example: 50% of the cost of a heat pump water heater. |
+| Value      | Description                                                                                                                                                              |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| FlatAmount | A static amount, denominated in dollars. Example: $250                                                                                                                   |
+| Normalized | A dollar amount that scales linearly with some property of the measure, such as capacity or size. Example: $1,000 per ton (of heating/cooling capacity) for a heat pump. |
+| Percent    | An amount defined as a percentage of the cost of the measure. Example: 50% of the cost of a heat pump water heater.                                                      |
 
 ### applicant
 
