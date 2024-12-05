@@ -86,7 +86,9 @@ Every field in every file has an associated data type: a constraint on what valu
 
 ### amounts.csv
 
-TODO what does it mean for an incentive to have multiple amounts?
+There MAY be multiple records in this file that refer to the same incentive in `incentives`. When there is more than one amount row for a single incentive, it means that the two amount rows together define the total of the incentive, not that they are two alternatives. 
+Example of multiple amount rows:
+- situations where there is a base incentive plus a variable amount, such as $500 plus $1.50 per square foot for insulation
 
 | Field                | Type                      | Presence     | Description                                                                                                                                                                                                                                                                                       |
 | -------------------- | ------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
