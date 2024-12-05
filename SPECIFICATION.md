@@ -252,7 +252,92 @@ NODE datasets do not include information on the physical land areas that the var
 
 ### technology
 
-TODO
+There are a very large number of possible technologies an incentive can be for. We expect to add entries to this enum on an ongoing basis, to more accurately express incentives with finer distinctions in what they are for.
+
+**The groupings below are for clarity in documentation only**; they are not a feature of the schema or of datasets.
+
+#### Weatherization
+
+| Value                | Description                                                                                                                                                                                                                                                  |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| AtticInsulation      | Insulation in the attic or roof — generally, anything above the building's conditioned space. Includes attic kneewall insulation.                                                                                                                            |
+| BasementInsulation   | Insulation of an unconditioned basement. A basement is generally distinguished from a crawlspace by having enough vertical space for a person to stand up.                                                                                                   |
+| CrawlspaceInsulation | Insulation of a crawlspace, including side walls.                                                                                                                                                                                                            |
+| DoorReplacement      | Replacement of exterior doors to improve the building envelope.                                                                                                                                                                                              |
+| DuctInsulation       | Insulation around HVAC ducts. Distinct from duct sealing in that it aims to reduce heat transfer through the body of the ductwork, rather than air leakage.                                                                                                  |
+| DuctReplacement      | Replacement of HVAC ducts. **Does not include** duct sealing or duct insulation.                                                                                                                                                                             |
+| DuctSealing          | Sealing of HVAC ducts to reduce air leakage. **Does not include** duct insulation.                                                                                                                                                                           |
+| FloorInsulation      | Insulation under the lowest floor of conditioned space. May overlap, in practice, with basement or crawlspace insulation. Incentives for these types of insulation are generally coded in line with how they're described in the original program materials. |
+| GeneralAirSealing    | Measures to reduce air leakage from the building envelope. Can include weather stripping of doors and windows.                                                                                                                                               |
+| OtherInsulation      | Any type of insulation that doesn't fall into one of the other categories.                                                                                                                                                                                   |
+| WallInsulation       | Insulation in vertical walls of conditioned space. **Does not include** sidewalls of unconditioned basements, or attic kneewalls.                                                                                                                            |
+| Windows              | Replacement of exterior windows to improve the building envelope.                                                                                                                                                                                            |
+
+#### Cooking
+
+| Value                     | Description                                                                                                                                        |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ElectricCookingAppliance  | A cooktop or range that uses electric resistance to produce heat. Includes permanently-installed appliances only, and excludes portable hotplates. |
+| InductionCookingAppliance | A cooktop or range that uses induction to produce heat. Includes permanently-installed appliances only, and excludes portable hotplates.           |
+
+#### Dryers
+
+| Value                          | Description                                                                               |
+| ------------------------------ | ----------------------------------------------------------------------------------------- |
+| ElectricResistanceLaundryDryer | A clothes dryer that uses electric resistance to produce heat.                            |
+| HeatPumpLaundryDryer           | A clothes dryer that uses a heat pump to heat and dry clothes. May be vented or ventless. |
+
+#### Water Heaters
+
+| Value                         | Description                                                                                                                                                                                                      |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ElectricResistanceWaterHeater | An appliance that heats domestic hot water using electric resistance.                                                                                                                                            |
+| HeatPumpWaterHeater           | An appliance that heats domestic hot water using a heat pump. **Does not include** applications where the produced hot water is used for space heating. Can include electric-resistance heating coils as backup. |
+| SolarWaterHeater              | An appliance that uses solar energy to heat water directly. Distinct from photovoltaic solar panels in that no electricity is produced from solar energy.                                                        |
+
+#### Transportation
+
+| Value                           | Description                                                                                                                                                                                                                                            |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ElectricBike                    | A bicycle with an electric motor. May be pedal-assist or throttle-controlled. Distinct from an electric scooter or motorcycle in that it can be pedaled.                                                                                               |
+| ElectricVehicleCharger          | A specialized electrical outlet that can charge an electric vehicle faster than a standard household outlet. Also known as a Level 2 or Level 3 charger. May include "smart" or "connected" functionality for demand response, though not necessarily. |
+| NewBatteryElectricVehicle       | A new vehicle whose only energy input is electricity.                                                                                                                                                                                                  |
+| NewPluginHybridElectricVehicle  | A new vehicle that can take both gasoline and electricity as energy input. Note that this **does not include** hybrids that cannot be plugged in.                                                                                                      |
+| UsedBatteryElectricVehicle      | A used vehicle whose only energy input is electricity.                                                                                                                                                                                                 |
+| UsedPluginHybridElectricVehicle | A used vehicle that can take both gasoline and electricity as energy input. Note that this **does not include** hybrids that cannot be plugged in.                                                                                                     |
+
+#### Heating, ventilation, and air conditioning
+
+| Value                      | Description                                                                                                                                                                                                                                                                                             |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GroundSourceHeatPump       | Any ground-source heat pump. Can include water-source heat pumps as well. These systems generally support both heating and cooling, and may produce domestic hot water as well. This category does not distinguish the means by which the system delivers heating and cooling to the conditioned space. |
+| DuctedAirSourceHeatPump    | An air-source heat pump that delivers heated or cooled air through ductwork, from a centralized air handler. Includes both split and packaged systems.                                                                                                                                                  |
+| DuctlessAirSourceHeatPump  | An air-source heat pump that delivers heated or cooled refrigerant to individual air handlers, with no ductwork. Also commonly known as "mini-splits".                                                                                                                                                  |
+| ElectricThermalStorageSlab | A device that stores heat in an insulated mass, and releases it over time.                                                                                                                                                                                                                              |
+| EvaporativeCooler          | A device that cools dry air by adding humidity. Also commonly known as a "swamp cooler".                                                                                                                                                                                                                |
+| SmartThermostat            | A thermostat that is connected to the Internet. May or may not be required to support demand response (i.e. reducing heating or cooling load in response to a request from a utility).                                                                                                                  |
+| WholeHouseFan              | A device that pulls in air from outside through open doors and windows, and exhausts it into an attic or outside.                                                                                                                                                                                       |
+
+#### Electrical infrastructure
+
+| Value                   | Description                                                                                                                                                                                                                                                                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| BatteryEnergyStorage    | Batteries that can power at least some of the home's electrical circuits. May or may not be required to support demand response (i.e. charging or discharging in response to requests from the utility).                                                                                                |
+| CriticalLoadPanels      | An electrical panel whose purpose is to separate loads that are to be fed by a backup source of electricity, such as a battery or generator.                                                                                                                                                            |
+| ElectricalPanel         | The panel of circuit breakers that controls electric distribution in the building. Can include both main panels and subpanels. Can include new and replacement panels. Can include upgrading electric service between the utility transformer and the building.                                         |
+| ElectricalWiring        | Upgrade and replacement of wiring in the home, such as to support new appliances, or higher currents and voltages. Can also include replacement of non-code-compliant wiring such as knob-and-tube. **Does not include** upgrades of electric service between the utility transformer and the building. |
+| SmartElectricalPanel    | An electrical panel that is connected to the Internet. May have the ability to coordinate power flow among solar photovoltaic panels, battery storage, and electrical loads. May have the ability to turn individual circuits on and off.                                                               |
+| SolarPhotovoltaicPanels | Photovoltaic solar panels. Includes both rooftop and ground-mounted installations. **Does not include** solar thermal water heating.                                                                                                                                                                    |
+
+#### Miscellaneous
+
+| Value                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ElectricOutdoorEquipment     | Lawnmowers (both riding and push), leaf blowers, trimmers, chainsaws, etc. Individual incentives may be for specific products only.                                                                                                                                                                                                                                                                                                                                        |
+| ElectricPoolHeater           | A device that heats swimming pool water using electricity.                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| EnergyEfficiencyImprovements | A comprehensive service to improve a home's energy efficiency. Usually involves an energy audit, weatherization measures, and possibly HVAC and appliance upgrades. Incentive amount may depend on measured or modeled effects of the upgrades. Incentive SHOULD be coded as this technology, instead of as the service's constituent upgrades, if it is offered as a single packaged service/experience, and customers can't claim the incentive for individual upgrades. |
+| HomeEnergyAudit              | A professional assessment of a home's energy efficiency and usage. **Does not include** virtual consultations — an auditor must physically visit the home. **Does not include** actually making energy efficiency improvements; incentives that combine an audit and improvement work may be better expressed as `EnergyEfficiencyImprovements`.                                                                                                                           |
+| Other                        | Any product or service not covered by another category of this enum. Note that the existence of an incentive for a specific kind of product, using this `technology` value, does not imply that a dataset tracks more incentives for that kind of product.                                                                                                                                                                                                                 |
 
 ## Descriptive Text Guidelines
 
