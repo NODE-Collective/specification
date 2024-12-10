@@ -4,11 +4,10 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## Concepts
 
-### Incentive
+This specification outlines the five core concepts comprising the NODE dataset:
+[Amounts](#amount-structures), [Authorities](#authorities), [Incentives](#incentives), [Geographies](#geographies), and [Programs](#programs)
 
-The core concept of a NODE dataset is the incentive. An incentive is defined as an offering of _something of value_ conditioned on a customer receiving _one or more of a specific set of measures_.
-
-#### Amount Structures
+### Amount Structures
 
 The amount of value a customer can get from an incentive can vary in several ways:
 
@@ -24,19 +23,21 @@ Variable amounts may have floor or ceiling amounts, such as "30% of project cost
 
 Incentives can combine these structures in various ways; for example, "$500, plus $100 per ton" for a heat pump.
 
-#### Geographies
+**Sample data**
 
-Most incentives condition eligibility on location in some way — typically the location where the measure is installed, or where the applicant lives.
+| id * | incentive_id * | type * | normalization_unit | value * | range_reason | floor | ceiling | income_qualified * |
+|--|--|--|--|--|--|--|--|--|
+| ...01110 | ...01100 | normalized | KilowattHour | 150-1000 | InstallationLocation |  |  | false | // SGIP
+| ...11110 | ...11100 | FlatAmount |  | 2000 |  |  |  | false | // Electrify your home
+| ...21110 | ...21100 | FlatAmount |  | 1000 |  |  |  | false | // Bayren
+| ...21120 | ...21100 | FlatAmount |  | 250-400 | ReplacementType |  |  | false | // Bayren Replacement
+<!-- | ... | ... | Percent |  | .5 |  | 2400 | 675 | false | // -->
 
-### Program
+_* indicates required field_
 
-The distinction between an incentive and a program is often unclear. There are many incentives that are not part of a distinct program. When there is no single name from a program, default to using the 'authority' plus a description of the product category, such as 'Georgia Power Home Appliance Rebates'. Further clarification can be provided by asking in our discussion forum.
+[See Amount definitions](#amountscsv)
 
-Several incentives may fall under the umbrella of a single "program". Some authorities have a broad grouping of incentives for home efficiency, and include insulation, air sealing, and other weatherization improvements as part of the same program. However, each of those measures may have different incentive amounts, with different amount structures.
-
-Take, for example, the federal [Energy Efficient Home Improvement Credit](https://www.irs.gov/credits-deductions/energy-efficient-home-improvement-credit) (25C). It is presented as a single tax credit, but it applies to several different home efficiency measures, with different amounts of money available for each. Each of those amounts is an "incentive", in our terminology, and the 25C credit as a whole is a "program".
-
-### Authority
+### Authorities
 
 An "authority" is any government agency, or non-government organization, that offers incentive programs. This can include agencies at all levels of government (federal, state, tribal, county, municipal), utility companies (investor-owned or publicly-owned), nonprofit organizations, and non-utility businesses.
 
@@ -46,6 +47,64 @@ There are several roles that an authority may have with respect to an incentive 
 - "Back office" administration: processing and deciding claims, keeping and reporting statistics, paying out funds, etc.
 - Setting the program's rules
 - Providing funding
+
+**Sample data**
+
+| id * | name * | abbreviation | level * |
+|--|--|--|--|
+| ...00000 | 'California Public Utilities Commission' | 'CPUC' | UtilityServiceProvider |
+| ...10000 | 'Central Coast Community Energy' | 'CCCE' | CommunityChoiceAggregator |
+| ...20000 | 'Bay Area Regional Energy Network' | 'BayREN' | RegionalUtilityNetwork |
+
+[See Authorities definitions](#authoritiescsv)
+
+### Geographies
+
+Most incentives condition eligibility on location in some way — typically the location where the measure is installed, or where the applicant lives.
+
+**Sample data**
+
+| id * | incentive_id * | type * | identifier * | include * |
+|--|--|--|--|--|
+| ...01101 | ...01100 | State | CA | true | //
+| ...11101 | ...11100 | State | CA | true | //
+| ...21101 | ...21100 | County | Alameda | true | //
+| ...21102 | ...21100 | County | Contra Costa | true | //
+| ...21103 | ...21100 | County | Marin | true | //
+
+[See Geographies definitions](#geographiescsv)
+
+### Incentives
+
+The core concept of a NODE dataset is the incentive. An incentive is defined as an offering of _something of value_ conditioned on a customer receiving _one or more of a specific set of measures_.
+
+**Sample data**
+
+| id * | program_id * | mechanisms * | property_types * | description | source_url | technologies * | status * | primary_applicant | income_qualified * |
+|--|--|--|--|--|--|--|--|--|--|
+| ...01100 | ...01000 | Rebate | SingleFamily |  |  | ElectricThermalStorageSlab | Active |  | false | // Self-Generation Incentive Program (SGIP) Thermal Energy Storage
+| ...11100 | ...11000 | Rebate | SingleFamily, Multifamily |  |  | SmartElectricalPanel | Active |  | false | // Electrify Your Home Smart Load Center
+| ...21100 | ...21000 | Rebate | SingleFamily |  |  | HeatPumpWaterHeater | Active |  | false | // BayREN Homeowner/Heat Pump Water Heater
+
+[See Incentives definitions](#incentivescsv)
+
+### Programs
+
+The distinction between an incentive and a program is often unclear. There are many incentives that are not part of a distinct program. When there is no single name from a program, default to using the 'authority' plus a description of the product category, such as 'Georgia Power Home Appliance Rebates'. Further clarification can be provided by asking in our discussion forum.
+
+Several incentives may fall under the umbrella of a single "program". Some authorities have a broad grouping of incentives for home efficiency, and include insulation, air sealing, and other weatherization improvements as part of the same program. However, each of those measures may have different incentive amounts, with different amount structures.
+
+Take, for example, the federal [Energy Efficient Home Improvement Credit](https://www.irs.gov/credits-deductions/energy-efficient-home-improvement-credit) (25C). It is presented as a single tax credit, but it applies to several different home efficiency measures, with different amounts of money available for each. Each of those amounts is an "incentive", in our terminology, and the 25C credit as a whole is a "program".
+
+**Sample data**
+
+| id * | administrator_id * | name * | source_url * | description | budget | end_date |
+|--|--|--|--|--|--|--|
+| ...01000 | ...00000 | 'Self-Generation Incentive Program (SGIP)' | 'https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/demand-side-management/self-generation-incentive-program' | 'The CPUC's Self-Generation Incentive Program (SGIP) provides incentives to support existing, new, and emerging distributed energy resources. SGIP provides rebates for qualifying distributed energy systems installed on the customer's side of the utility meter.  Qualifying technologies include wind turbines, waste heat to power technologies, pressure reduction turbines, internal combustion engines, microturbines, gas turbines, fuel cells, and advanced energy storage systems.' |  |  | // SGIP
+| ...11000 | ...10000 | 'New Construction Electrification Program' | 'https://3cenergy.org/rebates/new-construction-electrification-program-2/' | 'The New Construction Electrification Program will provide housing developers and homeowners with incentives to build all-electric housing.' |  |  | // CCCE
+| ...21000 | ...20000 | 'BayREN Rebates Program' | 'https://www.bayren.org/rebates-financing/single-family-homeowners' | 'Keep your home safe and comfortable with home energy improvements — and save a bundle on home energy bills with BayREN’s Home+ rebates.' |  |  | // BayREN
+
+[See Programs definitions](#programscsv)
 
 ## Dataset Structure
 
@@ -71,22 +130,22 @@ Every field in every file has an associated data type: a constraint on what valu
 
 | Data Type                  | Description                                                                                                                                                                                                             |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ID                         | An identifier for the record. It MUST be unique within the file where it appears.                                                                                                                                       |
-| ID (_file-name_)           | The ID of a record within the named file, within the same dataset. This ID MUST appear in the `id` field of exactly one row in the other file.                                                                          |
-| string                     | Any text.                                                                                                                                                                                                               |
-| URL                        | A URL according to [RFC 1738](https://datatracker.ietf.org/doc/html/rfc1738). The scheme SHOULD be `https`, and otherwise MUST be `http`.                                                                               |
-| number                     | A numeric value, expressed in decimal notation. The number of allowed decimal places may vary. Constraints on the value, such as upper and lower bounds, may vary.                                                      |
-| boolean                    | Either `0` (meaning false) or `1` (meaning true).                                                                                                                                                                       |
-| enum (_enum-name_)         | One of an enumerated set of values, as described in the named subsection of the [Enum Definitions](#enum-definitions) section of this document.                                                                         |
-| list of enum (_enum-name_) | A comma-separated list of values from the named enumerated set of values.                                                                                                                                               |
-| range                      | Two decimal numeric values, separated by a comma. The first value MUST be numerically less than or equal to the second. The number of allowed decimal places, and constraints such as upper and lower bounds, may vary. |
-| date                       | A "full-date" as defined by [RFC 3339 § 5.6](https://www.rfc-editor.org/rfc/rfc3339#section-5.6), such as `2024-06-30`.                                                                                                 |
+| `ID`                         | An identifier for the record. It MUST be unique within the file where it appears.                                                                                                                                       |
+| `ID (_file-name_)`           | The ID of a record within the named file, within the same dataset. This ID MUST appear in the `id` field of exactly one row in the other file.                                                                          |
+| `string`                     | Any text.                                                                                                                                                                                                               |
+| `URL`                        | A URL according to [RFC 1738](https://datatracker.ietf.org/doc/html/rfc1738). The scheme SHOULD be `https`, and otherwise MUST be `http`.                                                                               |
+| `number`                     | A numeric value, expressed in decimal notation. The number of allowed decimal places may vary. Constraints on the value, such as upper and lower bounds, may vary.                                                      |
+| `boolean`                    | Either `0` (meaning false) or `1` (meaning true).                                                                                                                                                                       |
+| `enum (_enum-name_)`         | One of an enumerated set of values, as described in the named subsection of the [Enum Definitions](#enum-definitions) section of this document.                                                                         |
+| `list of enum (_enum-name_)` | A comma-separated list of values from the named enumerated set of values.                                                                                                                                               |
+| `range`                      | Two decimal numeric values, separated by a comma. The first value MUST be numerically less than or equal to the second. The number of allowed decimal places, and constraints such as upper and lower bounds, may vary. |
+| `date`                       | A "full-date" as defined by [RFC 3339 § 5.6](https://www.rfc-editor.org/rfc/rfc3339#section-5.6), such as `2024-06-30`.                                                                                                 |
 
 ## Field Definitions
 
 ### amounts.csv
 
-There MAY be multiple records in this file that refer to the same incentive in `incentives`. When there is more than one amount row for a single incentive, it means that the two amount rows together define the total of the incentive, not that they are two alternatives. 
+There MAY be multiple records in this file that refer to the same incentive in `incentives`. When there is more than one amount row for a single incentive, it means that the two amount rows together define the total of the incentive, not that they are two alternatives.
 Example of multiple amount rows:
 - situations where there is a base incentive plus a variable amount, such as $500 plus $1.50 per square foot for insulation
 
@@ -94,22 +153,22 @@ Example of multiple amount rows:
 | -------------------- | ------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                 | ID                        | **Required** | The unique ID of this record.                                                                                                                                                                                                                                                                     |
 | `incentive_id`       | ID (incentives.csv)       | **Required** | The ID of the incentive this amount structure pertains to.                                                                                                                                                                                                                                        |
-| `type`               | enum (amount_type)        | **Required** | The structure of this amount: what it depends on.                                                                                                                                                                                                                                                 |
-| `normalization_unit` | enum (normalization_unit) | Optional     | The unit of the quantity the amount depends on. MUST be present for amounts of type `Normalized`, and MUST NOT be present otherwise.                                                                                                                                                              |
+| `type`               | [enum (amount_type)](#amount_type)        | **Required** | The structure of this amount: what it depends on.                                                                                                                                                                                                                                                 |
+| `normalization_unit` | [enum (normalization_unit)](#normalization_unit) | Optional     | The unit of the quantity the amount depends on. MUST be present for amounts of type `Normalized`, and MUST NOT be present otherwise.                                                                                                                                                              |
 | `value`              | range                     | **Required** | If `type` is `FlatAmount`, a range of dollar value this amount structure may represent. If `type` is `Percent`, a range of numbers between 0 and 1, signifying a multiplier on the measure's cost. If `type` is `Normalized`, a range of dollar value per the unit named in `normalization_unit`. |
-| `range_reason`       | enum (range_reason)       | Optional     | The property of the measure, or the customer, that determines where in the range specified by `value` the incentive's value falls. This field MUST be present if the two parts of `value` are different, and MUST NOT be present otherwise.                                                       |
+| `range_reason`       | [enum (range_reason)](#range_reason)       | Optional     | The property of the measure, or the customer, that determines where in the range specified by `value` the incentive's value falls. This field MUST be present if the two parts of `value` are different, and MUST NOT be present otherwise.                                                       |
 | `floor`              | range                     | Optional     | The range of the least possible value this amount structure could be worth. Expressed in dollars. If the `type` is `FlatAmount`, this field MUST NOT be present.                                                                                                                                  |
 | `ceiling`            | range                     | Optional     | The range of the greatest possible value this amount structure could be worth. Expressed in dollars. If the `type` is `FlatAmount`, this field MUST NOT be present.                                                                                                                               |
 | `income_qualified`   | boolean                   | **Required** | Whether this amount is only available to customers whose income meets certain requirements.                                                                                                                                                                                                       |
 
-## authorities.csv
+### authorities.csv
 
 | Field          | Type                   | Presence     | Description                                                                                                                                                                                                                                                                                                                                                                            |
 | -------------- | ---------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`           | ID                     | **Required** | The unique ID of this authority.                                                                                                                                                                                                                                                                                                                                                       |
 | `name`         | string                 | **Required** | The full name of the authority. This SHOULD NOT be an abbreviation unless the authority is near-universally known by an abbreviated form, or the abbreviation has no un-abbreviated equivalent. This SHOULD be the name by which the general public would be most likely to know the authority; official legal names that differ from the "doing business as" name SHOULD NOT be used. |
 | `abbreviation` | string                 | Optional     | Any abbreviation by which the authority is commonly known.                                                                                                                                                                                                                                                                                                                             |
-| `level`        | enum (authority_level) | **Required** | The nature of the authority: what level of government it belongs to, or what kind of organization it is.                                                                                                                                                                                                                                                                               |
+| `level`        | [enum (authority_level)](#authority_level) | **Required** | The nature of the authority: what level of government it belongs to, or what kind of organization it is.                                                                                                                                                                                                                                                                               |
 
 ### geographies.csv
 
@@ -119,7 +178,7 @@ There MAY be multiple records in this file that refer to the same incentive in `
 | -------------- | --------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`           | ID                    | **Required** | The unique ID of this record.                                                                                                                        |
 | `incentive_id` | ID (incentives.csv)   | **Required** | The ID of the incentive this geography pertains to.                                                                                                  |
-| `type`         | enum (geography_type) | **Required** | The type of geographic area this record specifies.                                                                                                   |
+| `type`         | [enum (geography_type)](#geography_type) | **Required** | The type of geographic area this record specifies.                                                                                                   |
 | `identifier`   | string                | **Required** | Which geographic area this record specifies. The requirements for this field depend on the value of `type`; see the enum definition for full detail. |
 | `include`      | boolean               | **Required** | Whether this geographic area is included in, or excluded from, the area in which this geography's incentive may be claimed.                          |
 
@@ -129,13 +188,13 @@ There MAY be multiple records in this file that refer to the same incentive in `
 | ------------------- | ---------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                | ID                           | **Required** | The unique ID of this record.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `program_id`        | ID (programs.csv)            | **Required** | The ID of the program this incentive belongs to.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `mechanisms`        | list of enum (mechanism)     | **Required** | The ways in which a customer receives value from this incentive.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `property_types`    | list of enum (property_type) | **Required** | What types of real property the measure can be applied to.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `mechanisms`        | list of [enum (mechanism)](#mechanism)     | **Required** | The ways in which a customer receives value from this incentive.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `property_types`    | list of [enum (property_type)](#property_type) | **Required** | What types of real property the measure can be applied to.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `description`       | string                       | Optional     | A short description of what the incentive consists of. See [Descriptive Text Guidelines](#descriptive-text-guidelines) for more guidance.                                                                                                                                                                                                                                                                                                                                                                     |
 | `source_url`        | URL                          | Optional     | A URL to the best available official source of information on the incentive. The URL SHOULD point to a webpage, rather than a PDF; however, a PDF is acceptable if it is the only public source of details on the incentive. The URL SHOULD point to a document in which information on the incentive is visible with no additional navigation; however, this is not always possible. This field SHOULD be left blank if the best available URL is the same as the `source_url` of the corresponding program. |
-| `technologies`      | list of enum (technology)    | **Required** | Which technology or technologies the incentive applies to.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `status`            | enum (status)                | **Required** | The status of the incentive, specifically addressing whether customers can currently claim it.                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `primary_applicant` | enum (applicant)             | Optional     | Who should apply for the incentive, in terms of their relationship to the property where the measure is installed.                                                                                                                                                                                                                                                                                                                                                                                            |
+| `technologies`      | list of [enum (technology)](#technology)    | **Required** | Which technology or technologies the incentive applies to.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `status`            | [enum (status)](#status)                | **Required** | The status of the incentive, specifically addressing whether customers can currently claim it.                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `primary_applicant` | [enum (applicant)](#applicant)             | Optional     | Who should apply for the incentive, in terms of their relationship to the property where the measure is installed.                                                                                                                                                                                                                                                                                                                                                                                            |
 | `income_qualified`  | boolean                      | **Required** | Whether the incentive is only available to customers whose income meets certain requirements.                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 ### programs.csv
@@ -162,7 +221,7 @@ There MAY be multiple records in this file that refer to the same incentive in `
 
 ### applicant
 
-Primary applicant who can apply for the incentive. There MAY be an option in the incentive for multiple applicants to be the primary applicant. 
+Primary applicant who can apply for the incentive. There MAY be an option in the incentive for multiple applicants to be the primary applicant.
 
 | Value            | Description                                                                   |
 | -----------------| ------------------------------------------------------------------------------|
