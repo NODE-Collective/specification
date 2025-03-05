@@ -19,19 +19,19 @@ The amount of value a customer can get from an incentive can vary in several way
 
 - It may not be a monetary amount at all; products or services may simply be provided for free.
 
-Variable amounts may have floor or ceiling amounts, such as "30% of project cost, up to $1,000".
+Variable amounts may have dollar-amount floors, ceilings, or both, and those floors and ceilings may themselves be variable. An example of a variable ceiling: "30% of the cost of a heat pump, up to $1,500, or $2,000 if replacing electric resistance heat".
 
-Incentives can combine these structures in various ways; for example, "$500, plus $100 per ton" for a heat pump.
+An incentive may have multiple amount records associated, in which case the amounts are additive. For example, "$500, plus $100 per ton" would be expressed as two amount records: one `FlatAmount`, and one `Normalized`.
 
 **Sample data**
 
-| id * | incentive_id * | type * | normalization_unit | value * | range_reason | floor | ceiling | income_qualified * |
-|--|--|--|--|--|--|--|--|--|
-| ...01110 | ...01100 | normalized | KilowattHour | 150-1000 | InstallationLocation |  |  | false | // SGIP
-| ...11110 | ...11100 | FlatAmount |  | 2000 |  |  |  | false | // Electrify your home
-| ...21110 | ...21100 | FlatAmount |  | 1000 |  |  |  | false | // Bayren
-| ...21120 | ...21100 | FlatAmount |  | 250-400 | ReplacementType |  |  | false | // Bayren Replacement
-<!-- | ... | ... | Percent |  | .5 |  | 2400 | 675 | false | // -->
+| id * | incentive_id * | type * | normalization_unit | value_min * | value_max * | range_reason | floor_min | floor_max | ceiling_min | ceiling_max | income_qualified * |
+|--|--|--|--|--|--|--|--|--|--|--|--|
+| ...01110 | ...01100 | normalized | KilowattHour | 150 | 1000 | InstallationLocation |  |  | | | false | // SGIP
+| ...11110 | ...11100 | FlatAmount |  | 2000 | 2000 |  |  |  | | | false | // Electrify your home
+| ...21110 | ...21100 | FlatAmount |  | 1000 | 1000 |  |  |  | | | false | // Bayren
+| ...21120 | ...21100 | FlatAmount |  | 250 | 400 | ReplacementType |  |  | | | false | // Bayren Replacement
+<!-- | ... | ... | Percent |  | 0.5 | 0.5 |  | 2400 | 675 | false | // -->
 
 _* indicates required field_
 
@@ -138,7 +138,6 @@ Every field in every file has an associated data type: a constraint on what valu
 | `boolean`                    | Either `0` (meaning false) or `1` (meaning true).                                                                                                                                                                       |
 | `enum (_enum-name_)`         | One of an enumerated set of values, as described in the named subsection of the [Enum Definitions](#enum-definitions) section of this document.                                                                         |
 | `list of enum (_enum-name_)` | A comma-separated list of values from the named enumerated set of values.                                                                                                                                               |
-| `range`                      | Two decimal numeric values, separated by a comma. The first value MUST be numerically less than or equal to the second. The number of allowed decimal places, and constraints such as upper and lower bounds, may vary. |
 | `date`                       | A "full-date" as defined by [RFC 3339 § 5.6](https://www.rfc-editor.org/rfc/rfc3339#section-5.6), such as `2024-06-30`.                                                                                                 |
 
 ## Field Definitions
@@ -155,10 +154,13 @@ Example of multiple amount rows:
 | `incentive_id`       | ID (incentives.csv)       | **Required** | The ID of the incentive this amount structure pertains to.                                                                                                                                                                                                                                        |
 | `type`               | [enum (amount_type)](#amount_type)        | **Required** | The structure of this amount: what it depends on.                                                                                                                                                                                                                                                 |
 | `normalization_unit` | [enum (normalization_unit)](#normalization_unit) | Optional     | The unit of the quantity the amount depends on. MUST be present for amounts of type `Normalized`, and MUST NOT be present otherwise.                                                                                                                                                              |
-| `value`              | range                     | **Required** | If `type` is `FlatAmount`, a range of dollar value this amount structure may represent. If `type` is `Percent`, a range of numbers between 0 and 1, signifying a multiplier on the measure's cost. If `type` is `Normalized`, a range of dollar value per the unit named in `normalization_unit`. |
+| `value_min`          | number                     | **Required** | If `type` is `FlatAmount`, the lowest dollar value this amount record may represent. If `type` is `Percent`, a number between 0 and 1, signifying the lowest multiplier on the measure's cost. If `type` is `Normalized`, the lowest dollar value per the unit named in `normalization_unit`. MUST be less than or equal to `value_max`. |
+| `value_max`          | number                     | **Required** | If `type` is `FlatAmount`, the highest dollar value this amount record may represent. If `type` is `Percent`, a number between 0 and 1, signifying the highest multiplier on the measure's cost. If `type` is `Normalized`, the highest dollar value per the unit named in `normalization_unit`. MUST be greater than or equal to `value_min`. |
 | `range_reason`       | [enum (range_reason)](#range_reason)       | Optional     | The property of the measure, or the customer, that determines where in the range specified by `value` the incentive's value falls. This field MUST be present if the two parts of `value` are different, and MUST NOT be present otherwise.                                                       |
-| `floor`              | range                     | Optional     | The range of the least possible value this amount structure could be worth. Expressed in dollars. If the `type` is `FlatAmount`, this field MUST NOT be present.                                                                                                                                  |
-| `ceiling`            | range                     | Optional     | The range of the greatest possible value this amount structure could be worth. Expressed in dollars. If the `type` is `FlatAmount`, this field MUST NOT be present.                                                                                                                               |
+| `floor_min`          | number                    | Optional     | The lowest possible dollar amount this amount record could be worth. If the `type` is `FlatAmount`, this field MUST NOT be present. If `floor_max` is present, this field MUST also be present. |
+| `floor_max`          | number                    | Optional     | The highest of the possible value floors of this amount record, in dollars. If the `type` is `FlatAmount`, this field MUST NOT be present. If `floor_min` is present, this field MUST also be present. |
+| `ceiling_min`        | number                    | Optional     | The lowest of the possible value ceilings of this amount record, in dollars. If the `type` is `FlatAmount`, this field MUST NOT be present. |
+| `ceiling_max`        | number                    | Optional     | The highest possible dollar amount this amount record could be worth. If the `type` is `FlatAmount`, this field MUST NOT be present. |
 | `income_qualified`   | boolean                   | **Required** | Whether this amount is only available to customers whose income meets certain requirements.                                                                                                                                                                                                       |
 
 ### authorities.csv
