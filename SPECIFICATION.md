@@ -41,6 +41,8 @@ _* indicates required field_
 
 An "authority" is any government agency, or non-government organization, that offers incentive programs. This can include agencies at all levels of government (federal, state, tribal, county, municipal), utility companies (investor-owned or publicly-owned), nonprofit organizations, and non-utility businesses.
 
+In the case of utilities which serve multiple states, a utility record will be provided for each state. This is to accommodate differences in regulatory environments and different incentive programs for the same utility in each state.
+
 There are several roles that an authority may have with respect to an incentive program:
 
 - "Front office" administration: publishing information, receiving claims, providing customer support, etc.
